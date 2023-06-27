@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Test'),
     );
   }
 }
@@ -33,7 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   // List<getUsers> users = [];
-  int counter = 0;
+  int counter = 1;
 
   Future<getUsers> fetchUsers() async {
     var baseUrl = "http://api.anviya.in/getUsers.php?page=$counter";
@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                   child: FutureBuilder(
@@ -92,13 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 15),
                                 decoration: BoxDecoration(
-                                    color: Colors.grey,
+                                    color: Colors.grey.shade300,
                                     borderRadius: BorderRadius.circular(14)),
                                 child: Row(
                                   children: [
                                     Container(
-                                      height: 100,
-                                      width: 100,
+                                      height: 80,
+                                      width: 80,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -121,19 +122,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                width: 180,
-                                                height: 35,
-                                                child: Text(
-                                                  'Name: $name',
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.visible,
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 15,
-                                                      fontFamily: "DMSans"),
-                                                ),
+                                              Text(
+                                                'Name: $name',
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 12,
+                                                    fontFamily: "DMSans"),
                                               ),
                                               SizedBox(
                                                 height: 3,
@@ -142,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 'Email : $email',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 15,
+                                                    fontSize: 12,
                                                     fontFamily: "DMSans"),
                                               ),
                                               SizedBox(
@@ -155,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 textAlign: TextAlign.justify,
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 15,
+                                                    fontSize: 12,
                                                     fontFamily: "DMSans"),
                                               )
                                             ],
@@ -168,6 +162,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               );
                             });
                       })),
+              SizedBox(
+                height: 10,
+              ),
               if (counter < 5)
                 Center(
                   child: SizedBox(
