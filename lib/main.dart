@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       future: fetchUsers(),
                       builder: (context, AsyncSnapshot<getUsers> snapshot) {
                         if (snapshot.hasError) {
-                          print('Something Went Wrong');
+                          print('Something Went Wrong ${snapshot.error}');
                         }
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         return ListView.separated(
                             separatorBuilder:
                                 (BuildContext context, int index) =>
-                                    SizedBox(height: 10.0),
+                                    const SizedBox(height: 10.0),
                             itemCount: snapshot.data?.data?.users?.length ?? 0,
                             itemBuilder: (context, index) {
                               var name =
@@ -107,12 +107,98 @@ class _MyHomePageState extends State<MyHomePage> {
                                             fit: BoxFit.scaleDown,
                                             image: NetworkImage(image),
                                           )),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(left: 19),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 180,
+                                                height: 35,
+                                                child: Text(
+                                                  'Name: $name',
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.visible,
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 15,
+                                                      fontFamily: "DMSans"),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 3,
+                                              ),
+                                              Text(
+                                                'Email : $email',
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontFamily: "DMSans"),
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Text(
+                                                'Phone : $phone',
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.justify,
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontFamily: "DMSans"),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     )
                                   ],
                                 ),
                               );
                             });
-                      }))
+                      })),
+              if (counter < 5)
+                Center(
+                  child: SizedBox(
+                    width: 180,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Validate returns true if the form is valid, otherwise false.
+                        setState(() {
+                          counter++;
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          //minimumSize: const Size(double.infinity, 56),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25),
+                            bottomRight: Radius.circular(25),
+                            bottomLeft: Radius.circular(25),
+                          ))),
+                      child: Text(
+                        'Load More',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: AutofillHints.addressCity),
+                      ),
+                    ),
+                  ),
+                )
             ],
           ),
         ));
