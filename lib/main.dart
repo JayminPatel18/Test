@@ -82,13 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                       "NO Name";
                               var phone =
                                   snapshot.data?.data?.users?[index].phone ??
-                                      "NO Name";
+                                      "NO Phone";
                               var email =
                                   snapshot.data?.data?.users?[index].email ??
-                                      "NO Name";
+                                      "NO Email";
                               var image = snapshot
                                       .data?.data?.users?[index].profileImage ??
-                                  "NO Name";
+                                  "NO Image";
                               return Container(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 15),
